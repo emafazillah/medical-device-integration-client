@@ -1,0 +1,28 @@
+{
+  "name": "mdi",
+  "version": "1.0.0",
+  "description": "Medical Device Integration for MOH",
+  "main": "server.js",
+  "dependencies": {
+    "body-parser": "^1.17.0",
+    "express": "^4.14.1",
+    "mongojs": "^2.4.0",
+    "request": "^2.81.0",
+    "request-promise": "^4.2.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/emafazillah/mdi.git"
+  },
+  "author": "Ema",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/emafazillah/mdi/issues"
+  },
+  "homepage": "https://github.com/emafazillah/mdi#readme"
+}

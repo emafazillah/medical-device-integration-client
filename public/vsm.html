@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html ng-app="vsmApp">
+<head>
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+	<title>HIS KKM</title>
+</head>
+<body>		
+	<div class="container-fluid" ng-controller="VsmAppCtrl">
+	
+		<h1>PATIENT NAME: KAMILAH BINTI SEMAN</h1>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">PATIENT DETAILS</div>
+			<div class="panel-body">
+				<div class="row">
+					<div class="col-lg-2">MRN: </div>
+					<div class="col-lg-4">HRPB0001</div>
+					<div class="col-lg-2">IC NO: </div>
+					<div class="col-lg-4">671029035432</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-2">AGE: </div>
+					<div class="col-lg-4">50 YRS</div>
+					<div class="col-lg-2">GENDER: </div>
+					<div class="col-lg-4">FEMALE</div>
+				</div>
+				<div class="row">
+					<div class="col-lg-2">CLINICIAN NAME: </div>
+					<div class="col-lg-4">DR AAINAA NADIAH BINTI ABD RAZAK</div>					
+					<div class="col-lg-2">CLINICIAN MMC: </div>
+					<div class="col-lg-4">56446</div>
+				</div>								
+			</div>
+		</div>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">VITAL SIGNS</div>
+			<div class="panel-body">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr><th colspan="9"><h4>VITAL SIGNS</h4></th></tr>				
+						<tr>	
+							<th class="text-center">Date & Time</th>
+							<th class="text-center">BP (mmg) Systolic</th>
+							<th class="text-center">BP (mmg) Diastolic</th>
+							<th class="text-center">PR (per min)</th><!-- vsm.hr -->
+							<th class="text-center">RR (per min)</th><!-- vsm.respiration -->
+							<th class="text-center">SPO2 (%)</th>
+							<th class="text-center">ETCO2</th><!-- no capture -->
+							<th class="text-center">Temp (C)</th>
+							<th class="text-center">Pain Score</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input class="form-control" ng-model="vsm.date"></td>
+							<td><input class="form-control" ng-model="vsm.systolic"></td>
+							<td><input class="form-control" ng-model="vsm.diastolic"></td>
+							<td><input class="form-control" ng-model="vsm.hr"></td>
+							<td><input class="form-control" ng-model="vsm.respiration"></td>
+							<td><input class="form-control" ng-model="vsm.o2sat"></td>
+							<td><input class="form-control"></td>
+							<td><input class="form-control" ng-model="vsm.temperature"></td>
+							<td><input class="form-control" ng-model="vsm.pain"></td>
+						</tr>
+					</tbody>
+				</table>
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr><th colspan="16"><h4>OTHER OBSERVATIONS</h4></th></tr>
+						<tr>
+							<th class="text-center">MAP</th>
+							<th class="text-center">Pulse Pressure</th>
+							<th class="text-center">Pulse Volume</th>
+							<th class="text-center">Capillary Refill Time (CRT)</th>
+							<th class="text-center">Shock Index</th>
+							<th class="text-center" colspan="4">GCS</th>
+							<th class="text-center">Blood Glucose</th>
+							<th class="text-center">Blood Ketone</th>
+							<th class="text-center">RTS Score</th>
+							<th class="text-center">Weight (kg)</th>
+							<th class="text-center">Height (cm)</th>
+							<th class="text-center">BMI</th>
+							<th class="text-center">Ideal Body Weight</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr>
+							<td><input class="form-control" ng-model="vsm.map"></td>
+							<td><input class="form-control" ng-model="vsm.pulse"></td>
+							<td><input class="form-control"></td>
+							<td><input class="form-control"></td>
+							<td><input class="form-control"></td>
+							<!-- GCS -->
+							<td>
+								<div class="row">
+									<div class="col-lg-2">E</div>
+									<div class="col-lg-4"><input class="form-control"></div>
+								</div>
+							</td>
+							<td>
+								<div class="row">
+									<div class="col-lg-2">V</div>
+									<div class="col-lg-4"><input class="form-control"></div>
+								</div>
+							</td>
+							<td>
+								<div class="row">
+									<div class="col-lg-2">M</div>
+									<div class="col-lg-4"><input class="form-control"></div>
+								</div>
+							</td>
+							<td>
+								<div class="row">
+									<div class="col-lg-3">Total</div>
+									<div class="col-lg-3"><input class="form-control"></div>
+								</div>
+							</td>
+							<!-- GCS -->
+							<td><input class="form-control"></td>
+							<td><input class="form-control"></td>
+							<td><input class="form-control"></td>
+							<td><input class="form-control" ng-model="vsm.weight"></td>
+							<td><input class="form-control" ng-model="vsm.height"></td>
+							<td><input class="form-control" ng-model="vsm.bmi"></td>
+							<td><input class="form-control"></td>					
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="panel-footer">
+				<div class="row">
+					<div class="col-lg-10">
+						<button class="btn btn-success" ng-click="device()">Get Input From Device</button>&nbsp;&nbsp;
+					</div>
+					<div class="col-lg-2">
+						<button class="btn btn-primary" ng-click="add()">Add</button>&nbsp;&nbsp;
+						<button class="btn btn-info" ng-click="update()">Update</button>&nbsp;&nbsp;
+						<button class="btn btn-info" ng-click="clear()">Clear</button>&nbsp;&nbsp;
+					</div>
+				</div>				
+			</div>
+		</div>
+		
+		<div class="panel panel-default">
+			<div class="panel-heading">VITAL SIGNS HISTORY</div>
+			<div class="panel-body">
+				<table class="table table-bordered table-striped">
+					<thead>
+						<tr>
+							<th class="text-center">No.</th>
+							<th class="text-center">BMI</th>
+							<th class="text-center">Clinician ID</th>
+							<th class="text-center">Date</th>
+							<th class="text-center">Diastolic</th>
+							<th class="text-center">Height</th>
+							<th class="text-center">Heart Rate</th>
+							<th class="text-center">MAP</th>
+							<th class="text-center">SpO2</th>
+							<th class="text-center">Pain</th>
+							<th class="text-center">Patient ID</th>
+							<th class="text-center">Pulse</th>
+							<th class="text-center">Respiration</th>
+							<th class="text-center">Systolic</th>
+							<th class="text-center">Temperature</th>
+							<th class="text-center">Weight</th>
+							<th class="text-center" colspan="2">Action</th>
+						</tr>
+					</thead>
+					<tbody>
+						<tr ng-repeat="vsm in vsmlist">
+							<td>{{$index + 1}}</td>
+							<td>{{vsm.bmi}}</td>
+							<td>{{vsm.clinicianid}}</td>
+							<td>{{vsm.date}}</td>
+							<td>{{vsm.diastolic}}</td>
+							<td>{{vsm.height}}</td>
+							<td>{{vsm.hr}}</td>
+							<td>{{vsm.map}}</td>
+							<td>{{vsm.o2sat}}</td>
+							<td>{{vsm.pain}}</td>
+							<td>{{vsm.patientid}}</td>
+							<td>{{vsm.pulse}}</td>
+							<td>{{vsm.respiration}}</td>
+							<td>{{vsm.systolic}}</td>
+							<td>{{vsm.temperature}}</td>
+							<td>{{vsm.weight}}</td>
+							<td><button class="btn btn-danger" ng-click="remove(vsm._id)">Remove</button></td>
+							<td><button class="btn btn-warning" ng-click="edit(vsm._id)">Edit</button></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>						
+	</div>	
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.2/angular.min.js"></script>
+	<script src="controllers/vsmController.js"></script>
+</body>
+</html>

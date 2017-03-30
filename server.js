@@ -7,6 +7,7 @@ var bodyParser = require('body-parser');
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
 
+/* vsm */
 // GET list
 app.get('/vsmlist', function(req, res) {
 	console.log("I GET response data");
@@ -73,6 +74,7 @@ app.put('/vsmlist/:id', function(req, res) {
 		res.json(doc);
 	});
 });
+/* vsm */
 
 app.listen(3000);
 console.log("Server is running on port 3000");

@@ -50,7 +50,7 @@ vsmApp.controller('VsmAppCtrl', ['$scope', '$http', function($scope, $http) {
 	
 	// DEVICE http://127.0.0.1:9233/WelchAllyn/Device/GetDevices
 	$scope.device = function() {
-		$http.get('http://127.0.0.1:9233/WelchAllyn/Device/GetCurrentReading?deviceid=USB_00000006').then(function(response) {
+		$http.get('http://127.0.0.1:9233/WelchAllyn/Device/GetCurrentReading?deviceid=USB_00000004').then(function(response) {
 			console.log("I GET request data from DEVICE");
 			
 			var deviceArray = response.data;			

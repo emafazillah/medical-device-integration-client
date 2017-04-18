@@ -1,5 +1,4 @@
 language: node_js
 node_js: 
 - "6"
-before_install: 
-- chmod 777 -R test/*
+before_script: chmod 777 node_modules/mocha/bin

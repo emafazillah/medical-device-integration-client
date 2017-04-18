@@ -88,7 +88,8 @@ function five() {
 		}
 	});
 	
-    setTimeout(five, 5000);
+    // PROD setTimeout(five, 5000);
+	setTimeout(five, 10000); // TEST
     
 }
 

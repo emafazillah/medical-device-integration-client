@@ -14,5 +14,4 @@ before_script:
   - gulp &
   - sleep 5 # give gulp background task some time to execute.
 script:
-  - mocha-phantomjs test/index.html
   - make test

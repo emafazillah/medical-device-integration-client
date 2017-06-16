@@ -1,0 +1,11 @@
+{
+  "name": "mdi",
+  "description": "Medical Device Integration for MOH",
+  "main": "server.js",
+  "authors": [
+    "Ema"
+  ],
+  "license": "ISC",
+  "homepage": "https://github.com/emafazillah/mdi",
+  "ignore": "node_modules"
+}

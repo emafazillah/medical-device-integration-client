@@ -1,4 +1,3 @@
-/* testing pr */
 var express = require('express');
 var app = express();
 var mongojs = require('mongojs');
@@ -6,6 +5,7 @@ var db = mongojs('vsmlist', ['vsmlist']);
 var bodyParser = require('body-parser');
 var http = require('http');
 var request = require('request-promise');
+var config = require('./lib/configuration/app'); // CONFIG
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
@@ -27,15 +27,25 @@ function getDevice(options, callback){
 	.end();
 }
 
+/* CONFIG
+ * To replace below setup;
+		var options = {
+				host: '127.0.0.1',
+				port: 9233,
+				path: '/WelchAllyn/Device/GetDevices',
+				method: 'GET'
+		};
+*/
+
 var options = {
-		host: '127.0.0.1',
-		port: 9233,
-		path: '/WelchAllyn/Device/GetDevices',
-		method: 'GET'
+		host: config.get('welchallynoptions:host'),
+		port: config.get('welchallynoptions:port'),
+		path: config.get('welchallynoptions:path'),
+		method: config.get('welchallynoptions:method')
 };
 
-/* Run every 5 seconds */
-function five() {
+/* Cron to run set by config file */
+function cron() {
 	
 	/* Start Process */
 	getDevice(options, function(err, result){
@@ -88,14 +98,16 @@ function five() {
 			});
 		}
 	});
-	
-    // PROD setTimeout(five, 5000);
-	setTimeout(five, 10000); // DEV
+	    
+	// DEV setTimeout(cron, 10000); PROD setTimeout(cron, 5000);
+	setTimeout(cron, config.get('cron:timeout'));
     
 }
 
-five();
+cron();
 /* Get Data */
 
-app.listen(3000);
+// CONFIG app.listen(3000);
+app.listen(config.get('app:port')); // CONFIG
+
 console.log("Server is running on port 3000");

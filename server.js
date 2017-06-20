@@ -5,7 +5,7 @@ var db = mongojs('vsmlist', ['vsmlist']);
 var bodyParser = require('body-parser');
 var http = require('http');
 var request = require('request-promise');
-var config = require('./lib/configuration/app'); // CONFIG
+var config = require('./lib/configuration/app');
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
@@ -27,17 +27,7 @@ function getDevice(options, callback){
 	.end();
 }
 
-/* CONFIG
- * To replace below setup;
-		var options = {
-				host: '127.0.0.1',
-				port: 9233,
-				path: '/WelchAllyn/Device/GetDevices',
-				method: 'GET'
-		};
-*/
-
-var options = {
+var welchAllynOptions = {
 		host: config.get('welchallynoptions:host'),
 		port: config.get('welchallynoptions:port'),
 		path: config.get('welchallynoptions:path'),
@@ -48,7 +38,7 @@ var options = {
 function cron() {
 	
 	/* Start Process */
-	getDevice(options, function(err, result){
+	getDevice(welchAllynOptions, function(err, result){
 		if(err || result === null || result === undefined){
 			return console.log('Error while trying to get device', err);
 		} else {
@@ -56,8 +46,8 @@ function cron() {
 			
 			// post device data
 			var apiDeviceOptions = {
-					method: 'POST',
-					uri: 'http://mywildflyrestv2-emafazillah.rhcloud.com/api/tbldevices',
+					method: config.get('apideviceoptions:method'),
+					uri: config.get('apideviceoptions:uri'),
 					body: JSON.stringify(result[0]),
 					headers: { 'Content-Type': 'application/json' }
 			};
@@ -70,10 +60,10 @@ function cron() {
 			// get patient data
 			var currentReading = '/WelchAllyn/Device/GetCurrentReading?deviceid=' + result[0].deviceid;
 			var currentReadingOptions = {
-					host: '127.0.0.1',
-					port: 9233,
+					host: config.get('welchallynoptions:host'),
+					port: config.get('welchallynoptions:port'),
 					path: currentReading,
-					method: 'GET'
+					method: config.get('welchallynoptions:method')
 			};
 			getDevice(currentReadingOptions, function(err, currentReadingOptionsResult){
 				if(err || currentReadingOptionsResult === null || currentReadingOptionsResult === undefined){
@@ -84,8 +74,8 @@ function cron() {
 					// post current reading
 					var reconstruct = currentReadingOptionsResult[0];
 					var apiCurrentReading = {
-							method: 'POST',
-							uri: 'http://mywildflyrestv2-emafazillah.rhcloud.com/api/tblpatientvsms',
+							method: config.get('apicurrentreading:method'),
+							uri: config.get('apicurrentreading:uri'),
 							body: JSON.stringify(reconstruct),
 							headers: { 'Content-Type': 'application/json' }
 					};
@@ -98,8 +88,7 @@ function cron() {
 			});
 		}
 	});
-	    
-	// DEV setTimeout(cron, 10000); PROD setTimeout(cron, 5000);
+	    	
 	setTimeout(cron, config.get('cron:timeout'));
     
 }
@@ -107,7 +96,6 @@ function cron() {
 cron();
 /* Get Data */
 
-// CONFIG app.listen(3000);
-app.listen(config.get('app:port')); // CONFIG
+app.listen(config.get('app:port'));
 
-console.log("Server is running on port 3000");
+console.log("Server is running on port " + config.get('app:port'));

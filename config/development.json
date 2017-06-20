@@ -10,5 +10,13 @@
 	},
 	"cron": {
 		"timeout": 10000
+	},
+	"apideviceoptions": {
+		"method": "POST",
+		"uri": "http://mywildflyrestv2-emafazillah.rhcloud.com/api/tbldevices"
+	},
+	"apicurrentreading": {
+		"method": "POST",
+		"uri": "http://mywildflyrestv2-emafazillah.rhcloud.com/api/tblpatientvsms"
 	}
 }

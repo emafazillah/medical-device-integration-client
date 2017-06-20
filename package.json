@@ -7,6 +7,7 @@
     "body-parser": "^1.17.2",
     "express": "^4.15.3",
     "graceful-fs": "^4.1.11",
+    "gulp-ng-config": "^1.4.0",
     "minimatch": "^3.0.4",
     "minimist": "^1.2.0",
     "mkdirp": "^0.5.1",

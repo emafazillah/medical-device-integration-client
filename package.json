@@ -4,8 +4,12 @@
   "description": "Medical Device Integration for MOH",
   "main": "server.js",
   "dependencies": {
+    "angular-route": "^1.6.5",
     "body-parser": "^1.17.2",
+    "browserify": "^14.4.0",
+    "dotenv": "^4.0.0",
     "express": "^4.15.3",
+    "fs": "0.0.1-security",
     "graceful-fs": "^4.1.11",
     "gulp-ng-config": "^1.4.0",
     "minimatch": "^3.0.4",
@@ -15,7 +19,8 @@
     "nconf": "^0.8.4",
     "pug": "^2.0.0-rc.2",
     "request": "^2.81.0",
-    "request-promise": "^4.2.1"
+    "request-promise": "^4.2.1",
+    "vinyl-source-stream": "^1.1.0"
   },
   "devDependencies": {
     "gulp": "^3.6.1",
@@ -27,7 +32,7 @@
   },
   "scripts": {
     "test": "make test",
-    "start": "node server.js"
+    "start": "node server"
   },
   "repository": {
     "type": "git",

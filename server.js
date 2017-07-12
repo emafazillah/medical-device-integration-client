@@ -5,7 +5,11 @@ var db = mongojs('vsmlist', ['vsmlist']);
 var bodyParser = require('body-parser');
 var http = require('http');
 var request = require('request-promise');
-var config = require('./lib/configuration/app');
+var nconfig = require('./lib/configuration/app');
+
+var gulp = require('gulp'); // Load gulp
+require('./gulpfile'); // Loads our ng-config task
+gulp.start('ng-config'); // Kick of gulp 'ng-config' task, which generates angular const configuration
 
 app.use(express.static(__dirname + "/public"));
 app.use(bodyParser.json());
@@ -28,10 +32,10 @@ function getDevice(options, callback){
 }
 
 var welchAllynOptions = {
-		host: config.get('welchallynoptions:host'),
-		port: config.get('welchallynoptions:port'),
-		path: config.get('welchallynoptions:path'),
-		method: config.get('welchallynoptions:method')
+	host: nconfig.get('welchallynoptions:host'),
+	port: nconfig.get('welchallynoptions:port'),
+	path: nconfig.get('welchallynoptions:path'),
+	method: nconfig.get('welchallynoptions:method')
 };
 
 /* Cron to run set by config file */
@@ -46,8 +50,8 @@ function cron() {
 			
 			// post device data
 			var apiDeviceOptions = {
-					method: config.get('apideviceoptions:method'),
-					uri: config.get('apideviceoptions:uri'),
+					method: nconfig.get('apideviceoptions:method'),
+					uri: nconfig.get('apideviceoptions:uri'),
 					body: JSON.stringify(result[0]),
 					headers: { 'Content-Type': 'application/json' }
 			};
@@ -60,10 +64,10 @@ function cron() {
 			// get patient data
 			var currentReading = '/WelchAllyn/Device/GetCurrentReading?deviceid=' + result[0].deviceid;
 			var currentReadingOptions = {
-					host: config.get('welchallynoptions:host'),
-					port: config.get('welchallynoptions:port'),
+					host: nconfig.get('welchallynoptions:host'),
+					port: nconfig.get('welchallynoptions:port'),
 					path: currentReading,
-					method: config.get('welchallynoptions:method')
+					method: nconfig.get('welchallynoptions:method')
 			};
 			getDevice(currentReadingOptions, function(err, currentReadingOptionsResult){
 				if(err || currentReadingOptionsResult === null || currentReadingOptionsResult === undefined){
@@ -74,8 +78,8 @@ function cron() {
 					// post current reading
 					var reconstruct = currentReadingOptionsResult[0];
 					var apiCurrentReading = {
-							method: config.get('apicurrentreading:method'),
-							uri: config.get('apicurrentreading:uri'),
+							method: nconfig.get('apicurrentreading:method'),
+							uri: nconfig.get('apicurrentreading:uri'),
 							body: JSON.stringify(reconstruct),
 							headers: { 'Content-Type': 'application/json' }
 					};
@@ -89,13 +93,13 @@ function cron() {
 		}
 	});
 	    	
-	setTimeout(cron, config.get('cron:timeout'));
+	setTimeout(cron, nconfig.get('cron:timeout'));
     
 }
 
 cron();
 /* Get Data */
 
-app.listen(config.get('app:port'));
+app.listen(nconfig.get('app:port'));
 
-console.log("Server is running on port " + config.get('app:port'));
+console.log("Server is running on port " + nconfig.get('app:port'));

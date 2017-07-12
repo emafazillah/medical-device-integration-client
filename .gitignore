@@ -1,3 +1,7 @@
+.env
+.env-dev
+config.json
+public/controllers/config.js
 .settings/
 node_modules/
 .jshintrc

@@ -1,5 +1,5 @@
 // comment first because error when parsing variable from config.js
-// require('./config.js');
+//require('./config.js');
 // and hard code as below;
 var ENV_VARS = "http://mywildflyrestv2-emafazillah.rhcloud.com/api/tblpatienthiskkms";
 

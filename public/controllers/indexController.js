@@ -9,7 +9,7 @@ indexApp.controller('IndexCtrl', ['$scope', '$http', function($scope, $http) {
 	console.log("Hello from indexController");
 	
 	// Dev: $scope.url = ENV_VARS + '/listpatientid/95746';
-	$scope.url = ENV_VARS + '/3';
+	$scope.url = ENV_VARS + '/95746';
 	var refresh = function() {
 		$http.get($scope.url).then(function(response){
 			console.log("I GET from RESTful API");		

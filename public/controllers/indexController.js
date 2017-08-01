@@ -1,15 +1,17 @@
 // comment first because error when parsing variable from config.js
-//require('./config.js');
+// require('./config.js');
 // and hard code as below;
-var ENV_VARS = "http://mywildflyrestv2-emafazillah.rhcloud.com/api/tblpatienthiskkms";
+// Dev: var ENV_VARS = "http://mywildflyrestv2-emafazillah.rhcloud.com/api/tblpatienthiskkms";
+var ENV_VARS = "http://his.integration.io/vsmWelchAllyn6000";
 
 var indexApp = angular.module('indexApp', []);
 indexApp.controller('IndexCtrl', ['$scope', '$http', function($scope, $http) {
 	console.log("Hello from indexController");
 	
-	$scope.url = ENV_VARS;
+	// Dev: $scope.url = ENV_VARS + '/listpatientid/95746';
+	$scope.url = ENV_VARS + '/3';
 	var refresh = function() {
-		$http.get($scope.url + '/listpatientid/95746').then(function(response){
+		$http.get($scope.url).then(function(response){
 			console.log("I GET from RESTful API");		
 			var vsms = response.data;
 			$scope.vsms = vsms;
@@ -55,10 +57,10 @@ indexApp.controller('IndexCtrl', ['$scope', '$http', function($scope, $http) {
 		$scope.vsm = null;
 	};
 	
-	// DEVICE list -> http://mywildflyrestv2-emafazillah.rhcloud.com/api/tblpatientvsms/listpatientid/95746
-	// DEVICE latest reading -> http://mywildflyrestv2-emafazillah.rhcloud.com/api/tblpatientvsms/patientid/95746
+	// Dev: DEVICE list -> http://mywildflyrestv2-emafazillah.rhcloud.com/api/tblpatientvsms/listpatientid/95746
+	// Dev: DEVICE latest reading -> http://mywildflyrestv2-emafazillah.rhcloud.com/api/tblpatientvsms/patientid/95746
 	$scope.device = function() {
-		$http.get($scope.url + '/patientid/95746').then(function(response) {
+		$http.get($scope.url).then(function(response) {
 			console.log("I GET request data from DEVICE");
 			
 			var deviceArray = response.data;			

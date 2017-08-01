@@ -49,6 +49,7 @@ function cron() {
 			console.log(result[0].deviceid);
 			
 			// post device data
+			/*
 			var apiDeviceOptions = {
 					method: nconfig.get('apideviceoptions:method'),
 					uri: nconfig.get('apideviceoptions:uri'),
@@ -60,6 +61,7 @@ function cron() {
 			}).catch(function(err){
 				console.log('ERROR POST Device response', err);
 			});
+			*/
 			
 			// get patient data
 			var currentReading = '/WelchAllyn/Device/GetCurrentReading?deviceid=' + result[0].deviceid;

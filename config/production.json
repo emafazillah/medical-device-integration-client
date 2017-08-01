@@ -17,6 +17,6 @@
 	},
 	"apicurrentreading": {
 		"method": "POST",
-		"uri": "http://mywildflyrestv2-emafazillah.rhcloud.com/api/tblpatientvsms"
+		"uri": "http://his.integration.io/vsmWelchAllyn6000"
 	}
 }
